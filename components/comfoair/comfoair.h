@@ -191,9 +191,10 @@ public:
     write_command_(CMD_RESET_AND_SELF_TEST, reset_cmd, sizeof(reset_cmd));
 	}
 
-  void filter_reset(void) {
-    uint8_t reset_cmd[4] = {0, 0, 0, 1};
-    write_command_(CMD_RESET_AND_SELF_TEST, reset_cmd, sizeof(reset_cmd));
+  void reset_filter(void) {
+    ESP_LOGI(TAG, "Resetting filter");
+    uint8_t reset_cmd[COMFOAIR_SET_RESET_LENGTH] = {0, 0, 0, 1};
+    this->write_command_(COMFOAIR_SET_RESET_REQUEST, reset_cmd, sizeof(reset_cmd));
 	}
 
   void set_name(const char* value) {name = value;}
